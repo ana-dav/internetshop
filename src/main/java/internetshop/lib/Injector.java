@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class Injector {
     private static final Map<String, Injector> injectors = new HashMap<>();
 
@@ -44,7 +43,7 @@ public class Injector {
             if (isFieldInitialized(field, instanceOfCurrentClass)) {
                 continue;
             }
-            if (field.getDeclaredAnnotation(Service.class) != null) {
+            if (field.getDeclaredAnnotation(Inject.class) != null) {
                 Object classToInject = getInstance(field.getType());
                 newInstanceOfClass = getNewInstance(clazz);
                 setValueToField(field, newInstanceOfClass, classToInject);

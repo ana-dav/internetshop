@@ -1,19 +1,15 @@
 package internetshop.service.impl;
 
+import java.util.List;
 import internetshop.dao.ProductDao;
 import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.Product;
 import internetshop.service.ProductService;
 
-
-import java.util.List;
-
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    //inject вместо new
-    //сюда заинжектить объект, сейчас null
     @Inject
     private ProductDao productDao;
 
@@ -29,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAll() {
-        return productDao.getAll();
+     return productDao.getAll();
     }
 
     @Override
@@ -39,6 +35,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean delete(Long id) {
-        return productDao.delete(id);
+       return productDao.delete(id);
     }
 }
