@@ -5,12 +5,6 @@ public class User {
     private String name;
     private String login;
     private String password;
-    //Set<Role> roles;
-
-    //kakie buli zakazu
-    //skolko bulo korzin
-    //kakie dannue buli v korzine
-
 
     public User(Long id, String name, String login, String password) {
         this.id = id;

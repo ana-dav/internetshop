@@ -5,8 +5,6 @@ import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.Product;
 import internetshop.service.ProductService;
-
-
 import java.util.List;
 
 @Service

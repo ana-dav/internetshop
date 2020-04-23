@@ -6,7 +6,6 @@ import internetshop.lib.Dao;
 import internetshop.lib.Service;
 import internetshop.model.ShoppingCart;
 import internetshop.service.ShoppingCartService;
-
 import java.util.Optional;
 
 @Service

@@ -3,13 +3,13 @@ package internetshop;
 import internetshop.lib.Injector;
 import internetshop.model.Product;
 import internetshop.service.ProductService;
-
 import java.math.BigDecimal;
 import java.util.List;
 
 public class App {
     // TODO: 4/23/20
     private static Injector injector = Injector.getInstance("internetshop");
+
     public static void main(String[] args) {
         ProductService productService =
                 (ProductService) injector.getInstance(ProductService.class);

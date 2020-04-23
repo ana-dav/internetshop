@@ -3,7 +3,6 @@ package internetshop.dao.impl;
 import internetshop.dao.ShoppingCartDao;
 import internetshop.db.Storage;
 import internetshop.model.ShoppingCart;
-
 import java.util.NoSuchElementException;
 
 public class ShoppingCartDaoImpl implements ShoppingCartDao {

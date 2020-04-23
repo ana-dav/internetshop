@@ -4,7 +4,6 @@ import internetshop.dao.ProductDao;
 import internetshop.db.Storage;
 import internetshop.lib.Dao;
 import internetshop.model.Product;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -35,7 +34,7 @@ public class ProductDaoImpl implements ProductDao {
         IntStream.range(0, Storage.products.size())
                 .filter(x -> product.getId().equals(Storage.products.get(x).getId()))
                 .forEach(i -> Storage.products.set(i, product));
-    return product;
+        return product;
     }
 
     @Override
