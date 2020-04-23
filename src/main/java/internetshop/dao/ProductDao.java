@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductDao {
-    //CRUD
+    
     Product create(Product product);
 
     Optional<Product> get(Long id);

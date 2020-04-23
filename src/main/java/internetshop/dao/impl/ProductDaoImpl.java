@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 public class ProductDaoImpl implements ProductDao {
     @Override
     public Product create(Product product) {
-        Storage.products.add(product);
+        Storage.addProduct(product);
         return product;
     }
 
