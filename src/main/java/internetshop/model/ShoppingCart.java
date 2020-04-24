@@ -13,14 +13,6 @@ public class ShoppingCart {
         this.user = user;
     }
 
-    public ShoppingCart(ShoppingCart shoppingCart) {
-        id = shoppingCart.getId();
-        products = shoppingCart.getProducts().stream()
-                .map(Product::new)
-                .collect(Collectors.toList());
-        user = new User(shoppingCart.user);
-    }
-
     public Long getId() {
         return id;
     }
@@ -43,5 +35,14 @@ public class ShoppingCart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "id=" + id +
+                ", products=" + products +
+                ", user=" + user +
+                '}';
     }
 }

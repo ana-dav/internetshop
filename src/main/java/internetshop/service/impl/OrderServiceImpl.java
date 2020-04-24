@@ -1,5 +1,6 @@
 package internetshop.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import internetshop.dao.OrderDao;
@@ -22,16 +23,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order completeOrder(List<Product> products, User user) {
-        Order order = new Order(products, user);
-        cartService.getByUserId(user.getId())
-                .getProducts().clear();
-        return orderDao.create(order);
+        List<Product> productsToOrder = new ArrayList<>(products);
+        cartService.clear(cartService.getByUserId(user.getId()));
+        Order newOrder = new Order(productsToOrder, user);
+        return orderDao.create(newOrder);
     }
 
     @Override
     public List<Order> getUserOrders(User user) {
-        return Storage.orders.stream()
-                .filter(o -> o.getUser().getId().equals(user.getId()))
+        return orderDao.getAll().stream()
+                .filter(order -> order.getUser().equals(user))
                 .collect(Collectors.toList());
     }
 
