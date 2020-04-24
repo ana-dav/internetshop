@@ -1,16 +1,27 @@
 package internetshop.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Order {
     private Long id;
     private List<Product> products;
     private User user;
 
-    public Order(Long id, List<Product> products, User user) {
-        this.id = id;
+    public Order() {
+    }
+
+    public Order(List<Product> products, User user) {
         this.products = products;
         this.user = user;
+    }
+
+    public Order(Order order) {
+        id = order.getId();
+        products = order.products.stream()
+                .map(Product::new)
+                .collect(Collectors.toList());
+        user = new User(order.getUser());
     }
 
     public Long getId() {
@@ -35,5 +46,12 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" + "id=" + id
+                + ", products=" + products
+                + ", user=" + user + '}';
     }
 }

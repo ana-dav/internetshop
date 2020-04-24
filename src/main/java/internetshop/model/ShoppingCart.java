@@ -1,16 +1,24 @@
 package internetshop.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShoppingCart {
     private Long id;
     private List<Product> products;
     private User user;
 
-    public ShoppingCart(Long id, List<Product> products, User user) {
-        this.id = id;
+    public ShoppingCart(List<Product> products, User user) {
         this.products = products;
         this.user = user;
+    }
+
+    public ShoppingCart(ShoppingCart shoppingCart) {
+        id = shoppingCart.getId();
+        products = shoppingCart.getProducts().stream()
+                .map(Product::new)
+                .collect(Collectors.toList());
+        user = new User(shoppingCart.user);
     }
 
     public Long getId() {

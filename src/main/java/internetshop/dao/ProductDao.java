@@ -1,8 +1,8 @@
 package internetshop.dao;
 
+import internetshop.model.Product;
 import java.util.List;
 import java.util.Optional;
-import internetshop.model.Product;
 
 public interface ProductDao {
 

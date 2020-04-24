@@ -23,21 +23,24 @@ public class Storage {
         products.add(product);
     }
 
-    public static void addUser(User user) {
+    public static User addUser(User user) {
         userId++;
         user.setId(userId);
         users.add(user);
+        return user;
     }
 
-    public static void addShoppingCart(ShoppingCart shoppingCart) {
+    public static ShoppingCart addShoppingCart(ShoppingCart shoppingCart) {
         shoppingCartId++;
         shoppingCart.setId(shoppingCartId);
         shoppingCarts.add(shoppingCart);
+        return shoppingCart;
     }
 
-    public static void addOrder(Order order) {
+    public static Order addOrder(Order order) {
         orderId++;
         order.setId(orderId);
         orders.add(order);
+        return order;
     }
 }

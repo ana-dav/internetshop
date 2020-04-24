@@ -1,5 +1,19 @@
 package internetshop.dao;
 
+import java.util.List;
+import java.util.Optional;
+import internetshop.model.User;
+
 public interface UserDao {
-    // TODO: 4/23/20  
+
+    User create(User user);
+
+    Optional<User> get(Long id);
+
+    List<User> getAll();
+
+    User update(User user);
+
+    boolean delete(Long id);
+
 }

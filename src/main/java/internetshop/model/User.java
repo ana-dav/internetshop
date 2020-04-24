@@ -6,11 +6,17 @@ public class User {
     private String login;
     private String password;
 
-    public User(Long id, String name, String login, String password) {
-        this.id = id;
+    public User(String name, String login, String password) {
         this.name = name;
         this.login = login;
         this.password = password;
+    }
+
+    public User(User user) {
+        id = user.getId();
+        name = user.getName();
+        login = user.getLogin();
+        password = user.getPassword();
     }
 
     public Long getId() {
