@@ -1,14 +1,14 @@
 package internetshop.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShoppingCart {
     private Long id;
     private List<Product> products;
     private User user;
 
-    public ShoppingCart(Long id, List<Product> products, User user) {
-        this.id = id;
+    public ShoppingCart(List<Product> products, User user) {
         this.products = products;
         this.user = user;
     }
@@ -35,5 +35,14 @@ public class ShoppingCart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "id=" + id +
+                ", products=" + products +
+                ", user=" + user +
+                '}';
     }
 }

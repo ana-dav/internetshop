@@ -1,17 +1,15 @@
 package internetshop.service.impl;
 
+import java.util.List;
 import internetshop.dao.ProductDao;
 import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.Product;
 import internetshop.service.ProductService;
-import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    //inject вместо new
-    //сюда заинжектить объект, сейчас null
     @Inject
     private ProductDao productDao;
 
