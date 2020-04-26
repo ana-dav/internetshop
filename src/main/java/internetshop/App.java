@@ -42,8 +42,8 @@ public class App {
     }
 
     private static void checkUserDB(UserService userService) {
-        User user1 = new User("name1", "login1", "123");
-        User user2 = new User("name2", "login2", "124");
+        var user1 = new User("name1", "login1", "123");
+        var user2 = new User("name2", "login2", "124");
 
         userService.create(user1);
         userService.create(user2);
@@ -55,10 +55,10 @@ public class App {
     }
 
     private static List<Product> generateProducts() {
-        Product product1 = new Product("Cucumber", BigDecimal.valueOf(10));
-        Product product2 = new Product("Cherry", BigDecimal.valueOf(11));
-        Product product3 = new Product("Milk", BigDecimal.valueOf(12));
-        Product product4 = new Product("Cheese", BigDecimal.valueOf(13));
+        var product1 = new Product("Cucumber", BigDecimal.valueOf(10));
+        var product2 = new Product("Cherry", BigDecimal.valueOf(11));
+        var product3 = new Product("Milk", BigDecimal.valueOf(12));
+        var product4 = new Product("Cheese", BigDecimal.valueOf(13));
         return Arrays.asList(product1, product2, product3, product4);
     }
 }
