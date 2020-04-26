@@ -1,10 +1,10 @@
 package internetshop.service.impl;
 
-import internetshop.model.User;
-import internetshop.service.UserService;
+import internetshop.dao.UserDao;
 import internetshop.lib.Inject;
 import internetshop.lib.Service;
-import internetshop.dao.UserDao;
+import internetshop.model.User;
+import internetshop.service.UserService;
 import java.util.List;
 
 @Service

@@ -1,21 +1,22 @@
 package internetshop.db;
 
-import java.util.ArrayList;
-import java.util.List;
 import internetshop.model.Order;
 import internetshop.model.Product;
 import internetshop.model.ShoppingCart;
 import internetshop.model.User;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Storage {
-    private static Long userId = 0L;
-    private static Long shoppingCartId = 0L;
-    private static Long orderId = 0L;
-    private static Long productId = 0L;
     public static final List<User> users = new ArrayList<>();
     public static final List<ShoppingCart> shoppingCarts = new ArrayList<>();
     public static final List<Order> orders = new ArrayList<>();
     public static final List<Product> products = new ArrayList<>();
+
+    private static Long userId = 0L;
+    private static Long shoppingCartId = 0L;
+    private static Long orderId = 0L;
+    private static Long productId = 0L;
 
     public static void addProduct(Product product) {
         productId++;

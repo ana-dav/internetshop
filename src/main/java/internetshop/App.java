@@ -1,8 +1,5 @@
 package internetshop;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
 import internetshop.lib.Injector;
 import internetshop.model.Product;
 import internetshop.model.User;
@@ -10,6 +7,9 @@ import internetshop.service.OrderService;
 import internetshop.service.ProductService;
 import internetshop.service.ShoppingCartService;
 import internetshop.service.UserService;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class App {
     private static final Injector injector = Injector.getInstance("internetshop");

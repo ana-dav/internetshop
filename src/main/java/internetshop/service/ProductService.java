@@ -1,6 +1,7 @@
 package internetshop.service;
 
 import internetshop.model.Product;
+import java.security.Key;
 import java.util.List;
 
 public interface ProductService {

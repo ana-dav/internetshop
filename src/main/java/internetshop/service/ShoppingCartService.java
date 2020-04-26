@@ -1,8 +1,8 @@
 package internetshop.service;
 
-import java.util.List;
 import internetshop.model.Product;
 import internetshop.model.ShoppingCart;
+import java.util.List;
 
 public interface ShoppingCartService {
 

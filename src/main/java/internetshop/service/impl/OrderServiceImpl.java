@@ -1,7 +1,5 @@
 package internetshop.service.impl;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import internetshop.dao.OrderDao;
 import internetshop.db.Storage;
 import internetshop.lib.Inject;
@@ -11,6 +9,8 @@ import internetshop.model.Product;
 import internetshop.model.User;
 import internetshop.service.OrderService;
 import internetshop.service.ShoppingCartService;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
