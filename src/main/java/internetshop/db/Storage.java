@@ -18,10 +18,11 @@ public class Storage {
     private static Long orderId = 0L;
     private static Long productId = 0L;
 
-    public static void addProduct(Product product) {
+    public static Product addProduct(Product product) {
         productId++;
         product.setId(productId);
         products.add(product);
+        return product;
     }
 
     public static User addUser(User user) {
