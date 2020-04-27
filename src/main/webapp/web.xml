@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>internetshop.controllers.IndexController</servlet-class>
+        <servlet-class>mate.academy.internetshop.controllers.IndexController</servlet-class>
     </servlet>
     
     <servlet-mapping>
