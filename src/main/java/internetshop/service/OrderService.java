@@ -6,7 +6,6 @@ import internetshop.model.User;
 import java.util.List;
 
 public interface OrderService {
-
     Order completeOrder(List<Product> products, User user);
 
     List<Order> getUserOrders(User user);

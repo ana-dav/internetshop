@@ -10,7 +10,6 @@ import java.util.stream.IntStream;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {
-
     @Override
     public Order create(Order order) {
         return Storage.addOrder(order);

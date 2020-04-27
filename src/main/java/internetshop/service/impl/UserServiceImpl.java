@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @Inject
     private UserDao userDao;
 
