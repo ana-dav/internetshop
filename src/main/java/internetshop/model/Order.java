@@ -8,20 +8,9 @@ public class Order {
     private List<Product> products;
     private User user;
 
-    public Order() {
-    }
-
     public Order(List<Product> products, User user) {
         this.products = products;
         this.user = user;
-    }
-
-    public Order(Order order) {
-        id = order.getId();
-        products = order.products.stream()
-                .map(Product::new)
-                .collect(Collectors.toList());
-        user = new User(order.getUser());
     }
 
     public Long getId() {
