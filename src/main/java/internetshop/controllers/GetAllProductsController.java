@@ -1,27 +1,27 @@
 package internetshop.controllers;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import internetshop.lib.Injector;
+import internetshop.model.Product;
 import internetshop.service.ProductService;
 
-@WebServlet("/products/delete")
-public class ShoppingCartProductRemove extends HttpServlet {
-    private static final Injector injector =
+@WebServlet("/products/all")
+public class GetAllProductsController extends HttpServlet {
+    private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private final ProductService productService =
-            (ProductService) injector.getInstance(ProductService.class);
-
+    private ProductService productService =
+            (ProductService) INJECTOR.getInstance(ProductService.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String productId = req.getParameter("id");
+        List<Product> allProducts = productService.getAll();
+        req.setAttribute("products", allProducts);
 
-        Long id = Long.valueOf(productId);
-        productService.delete(id);
-        resp.sendRedirect(req.getContextPath() + "/products/all");
+        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
     }
 }

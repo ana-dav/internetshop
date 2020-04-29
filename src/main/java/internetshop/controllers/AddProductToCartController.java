@@ -11,7 +11,7 @@ import internetshop.service.ProductService;
 import internetshop.service.ShoppingCartService;
 
 @WebServlet("/products/add")
-public class ProductAddToCartController extends HttpServlet {
+public class AddProductToCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");

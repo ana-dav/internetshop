@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/registration")
-public class UserRegController extends HttpServlet {
+public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -21,7 +21,6 @@ public class UserRegController extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("pass");
         String repeatPassword = req.getParameter("pass-confirm");
-
         if (password.equals(repeatPassword)) {
             resp.sendRedirect(req.getContextPath() + "/");
         } else {

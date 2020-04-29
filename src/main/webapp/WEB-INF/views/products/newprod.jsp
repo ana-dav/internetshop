@@ -7,9 +7,11 @@
     <form  method="post" action="${pageContext.request.contextPath}/newprod">
         <p>Add new product</p>
         <label>Name:</label>
-        <input name="name" type="text" placeholder="Name" value="${name}">
+        <input name="name" type="text" placeholder="Name"
+               value="${empty name?'value is empty or null':'value is NOT empty or null'}">
         <label>Price:</label>
-        <input name="price" type="text" placeholder="Price" value="${price}">
+        <input name="price" type="text" placeholder="Price"
+               value="${empty price?'value is empty or null':'value is NOT empty or null'}">
         <button class="btn btn-info btn-block my-4" type="submit">Add</button>
     </form>
 </div>

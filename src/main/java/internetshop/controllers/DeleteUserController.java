@@ -10,16 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/users/delete")
-public class UserDeleteController extends HttpServlet {
-    private static final Injector injector =
+public class DeleteUserController extends HttpServlet {
+    private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private final UserService userService =
-            (UserService) injector.getInstance(UserService.class);
+            (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         String userId = req.getParameter("id");
         Long id = Long.valueOf(userId);
         userService.delete(id);

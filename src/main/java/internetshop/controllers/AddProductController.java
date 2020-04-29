@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/newprod")
-public class ProductAddController extends HttpServlet {
+public class AddProductController extends HttpServlet {
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private ProductService productService =
@@ -30,17 +30,8 @@ public class ProductAddController extends HttpServlet {
         String name = req.getParameter("name");
         String priceStr = req.getParameter("price");
         BigDecimal price = BigDecimal.valueOf(Long.parseLong(priceStr));
-        if (name.isEmpty()) {
-            req.setAttribute("message", "Name of product can't be empty");
-            req.getRequestDispatcher("/WEB-INF/views/products/").forward(req, resp);
-        } else if (priceStr.length() <= 0) {
-            req.setAttribute("message3", "Price must be higher then 0");
-            req.getRequestDispatcher("/WEB-INF/views/products/newprod.jsp").forward(req, resp);
-        } else {
-            productService.create(new Product(name, price));
-            req.getRequestDispatcher("/WEB-INF/views/products/newprod.jsp").forward(req, resp);
-            req.setAttribute("message4", "Product added successfully");
 
-        }
+        productService.create(new Product(name, price));
+        req.getRequestDispatcher("/WEB-INF/views/products/newprod.jsp").forward(req, resp);
     }
 }

@@ -12,8 +12,6 @@ public class UserServiceImpl implements UserService {
     @Inject
     private UserDao userDao;
 
-    //private UserDao userDao = new UserDbImpl();
-
     @Override
     public User create(User user) {
         return userDao.create(user);

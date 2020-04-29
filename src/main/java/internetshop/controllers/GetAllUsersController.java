@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/users/all")
-public class UsersController extends HttpServlet {
-    private static final Injector injector =
+public class GetAllUsersController extends HttpServlet {
+    private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private UserService userService =
-            (UserService) injector.getInstance(UserService.class);
+            (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
