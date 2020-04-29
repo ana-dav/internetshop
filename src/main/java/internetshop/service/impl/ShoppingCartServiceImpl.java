@@ -14,6 +14,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartDao shoppingCartDao;
 
     @Override
+    public ShoppingCart create(ShoppingCart shoppingCart) {
+        return shoppingCartDao.create(shoppingCart);
+    }
+
+    @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
         shoppingCart.getProducts().add(product);
         shoppingCartDao.update(shoppingCart);
