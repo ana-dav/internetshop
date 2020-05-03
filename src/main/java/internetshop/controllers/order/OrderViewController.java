@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import internetshop.lib.Injector;
 import internetshop.model.Order;
 import internetshop.model.Product;
-import internetshop.model.ShoppingCart;
-import internetshop.model.User;
 import internetshop.service.OrderService;
 import internetshop.service.ShoppingCartService;
 

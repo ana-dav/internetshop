@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import internetshop.exceptions.AuthenticationException;
 import internetshop.lib.Injector;
+import internetshop.lib.Service;
 import internetshop.model.User;
 import internetshop.security.AuthenticationService;
 
 @WebServlet("/login")
+@Service
 public class LoginController extends HttpServlet {
     private final Injector INJECTOR = Injector.getInstance("internetshop");
     private final AuthenticationService authenticationService =
