@@ -1,16 +1,16 @@
 package internetshop.controllers.user;
 
+import internetshop.lib.Injector;
+import internetshop.model.ShoppingCart;
+import internetshop.model.User;
+import internetshop.service.ShoppingCartService;
+import internetshop.service.UserService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import internetshop.lib.Injector;
-import internetshop.model.ShoppingCart;
-import internetshop.model.User;
-import internetshop.service.ShoppingCartService;
-import internetshop.service.UserService;
 
 @WebServlet("/registration")
 public class RegistrationController extends HttpServlet {
