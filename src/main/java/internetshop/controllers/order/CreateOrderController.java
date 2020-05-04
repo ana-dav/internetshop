@@ -31,8 +31,8 @@ public class CreateOrderController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         User user = shoppingCart.getUser();
         List<Product> products = List.copyOf(shoppingCart.getProducts());
-        resp.sendRedirect(req.getContextPath() + "/orders");
         shoppingCartService.clear(shoppingCart);
         orderService.completeOrder(products, user);
+        resp.sendRedirect(req.getContextPath() + "/orders");
     }
 }
