@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="../parts/header.jsp"></jsp:include>
 <html>
 <head>
     <title>All products</title>
@@ -26,7 +27,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/products/add?id=${product.getId()}">
+                <a href="${pageContext.request.contextPath}/products/addToCart?id=${product.getId()}">
                     <button class="btn" type="submit">Add to cart</button>
                 </a>
             </td>

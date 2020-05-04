@@ -1,18 +1,18 @@
 package internetshop.controllers.cart;
 
+import internetshop.lib.Injector;
+import internetshop.model.Product;
+import internetshop.model.ShoppingCart;
+import internetshop.service.ProductService;
+import internetshop.service.ShoppingCartService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import internetshop.lib.Injector;
-import internetshop.model.Product;
-import internetshop.model.ShoppingCart;
-import internetshop.service.ProductService;
-import internetshop.service.ShoppingCartService;
 
-@WebServlet("/cart/delete")
+@WebServlet("/cart/deleteProduct")
 public class RemoveProductFromCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector INJECTOR =

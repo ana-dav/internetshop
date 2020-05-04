@@ -1,37 +1,46 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class="navbar navbar-expand-lg navbar-light bg-success">
-    <a class="navbar-brand" href="#">Gnome</a>
+<html>
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+    <title>Internetshop</title>
+</head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color scrolling-navbar">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/all">Products</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/registration">>Registration</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/cart">>Cart</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/cart">Cart</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Admin
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/users/all">All Users</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/products/admin">All Products</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">All Orders</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/injectData">Inject test data</a>
-                </div>
+            <li class="nav-item">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/users/all">All Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/products/admin">All Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">All Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/injectData">Inject test data</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>

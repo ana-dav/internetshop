@@ -6,6 +6,7 @@ import internetshop.lib.Service;
 import internetshop.model.User;
 import internetshop.service.UserService;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -37,4 +38,8 @@ public class UserServiceImpl implements UserService {
         return userDao.delete(id);
     }
 
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return userDao.findByLogin(login);
+    }
 }

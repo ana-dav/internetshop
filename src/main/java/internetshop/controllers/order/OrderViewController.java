@@ -1,5 +1,10 @@
 package internetshop.controllers.order;
 
+import internetshop.lib.Injector;
+import internetshop.model.Order;
+import internetshop.model.Product;
+import internetshop.service.OrderService;
+import internetshop.service.ShoppingCartService;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -7,11 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import internetshop.lib.Injector;
-import internetshop.model.Order;
-import internetshop.model.Product;
-import internetshop.service.OrderService;
-import internetshop.service.ShoppingCartService;
 
 @WebServlet("/order/details")
 public class OrderViewController extends HttpServlet {
@@ -29,7 +29,6 @@ public class OrderViewController extends HttpServlet {
         String orderId = req.getParameter("id");
         Long id = Long.valueOf(orderId);
         Order order = orderService.get(id);
-
         List<Product> products = order.getProducts();
         req.setAttribute("products", products);
         req.getRequestDispatcher("/WEB-INF/views/orders/order.jsp").forward(req,resp);
