@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/order/details")
 public class OrderViewController extends HttpServlet {
-    private static final Long USER_ID = 1L;
+    private static final String USER_ID = "";
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private OrderService orderService =
@@ -26,6 +26,7 @@ public class OrderViewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        Long userId = (Long) req.getSession().getAttribute(USER_ID);
         String orderId = req.getParameter("id");
         Long id = Long.valueOf(orderId);
         Order order = orderService.get(id);
