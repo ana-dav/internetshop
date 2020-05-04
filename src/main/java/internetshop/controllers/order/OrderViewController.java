@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/order/order")
+@WebServlet("/order/details")
 public class OrderViewController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector INJECTOR =

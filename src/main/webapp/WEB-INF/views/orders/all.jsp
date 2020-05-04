@@ -24,7 +24,7 @@
                 <c:out value ="${order.getUser().getName()}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/order/order?id=${order.getId()}">Details</a>
+                <a href="${pageContext.request.contextPath}/order/details?id=${order.getId()}">Details</a>
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}/cart/delete?id=${order.getId()}">Delete</a>
