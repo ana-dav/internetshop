@@ -32,7 +32,7 @@ public class CreateOrderController extends HttpServlet {
         User user = shoppingCart.getUser();
         List<Product> products = List.copyOf(shoppingCart.getProducts());
         resp.sendRedirect(req.getContextPath() + "/orders");
-        orderService.completeOrder(products, user);
         shoppingCartService.clear(shoppingCart);
+        orderService.completeOrder(products, user);
     }
 }
