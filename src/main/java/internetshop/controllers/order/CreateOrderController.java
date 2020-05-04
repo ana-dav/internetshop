@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/order")
+@WebServlet("/order/complete")
 public class CreateOrderController extends HttpServlet {
     private static final Long USER_ID = 1L;
 
@@ -31,8 +31,8 @@ public class CreateOrderController extends HttpServlet {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         User user = shoppingCart.getUser();
         List<Product> products = List.copyOf(shoppingCart.getProducts());
-        orderService.completeOrder(products, user);
         resp.sendRedirect(req.getContextPath() + "/orders");
+        orderService.completeOrder(products, user);
         shoppingCartService.clear(shoppingCart);
     }
 }
