@@ -15,18 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/order/details")
 public class OrderViewController extends HttpServlet {
-    private static final String USER_ID = "";
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private OrderService orderService =
+    private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
-    private ShoppingCartService shoppingCartService =
-            (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        Long userId = (Long) req.getSession().getAttribute("user_id");
         String orderId = req.getParameter("id");
         Long id = Long.valueOf(orderId);
         Order order = orderService.get(id);

@@ -1,37 +1,31 @@
 <jsp:include page="parts/header.jsp"></jsp:include>
-<!-- Material form register -->
-<div class="card">
+<div class="container">
+    <div class="row d-flex justify-content-center mt-5">
+        <h5 class="card-header info-color white-text text-center">
+            <strong>Sign up</strong>
+        </h5>
+        <div class="col-6 card">
 
-    <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Sign up</strong>
-    </h5>
 
-    <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
-
-        <!-- Form -->
+    <div class="card-body pt-0">
         <h4 style="color: darkred">${message}</h4>
 
         <form method="post" action="${pageContext.request.contextPath}/registration">
 
             <div class="form-row">
                 <div class="col">
-                    <!-- First name -->
                     <div class="md-form">
                         <input type="text" name="name" id="materialRegisterFormFirstName" class="form-control">
                         <label for="materialRegisterFormFirstName">First name</label>
                     </div>
                 </div>
                 <div class="col">
-                    <!-- Last name -->
                     <div class="md-form">
                         <input type="text" name="login" id="materialRegisterFormLastName" class="form-control">
                         <label for="materialRegisterFormLastName">Login</label>
                     </div>
                 </div>
             </div>
-
-            <!-- Password -->
             <div class="md-form">
                 <input type="password" name="pass" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
                 <label for="materialRegisterFormPassword">Password</label>
@@ -39,8 +33,6 @@
                     * At least 8 characters
                 </small>
             </div>
-
-            <!-- Phone number -->
             <div class="md-form">
                 <input type="password" name="pass-confirm" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
                 <label for="materialRegisterFormPhone">Confirm password</label>
@@ -60,9 +52,11 @@
                 <a href="" target="_blank">terms of service</a>
 
         </form>
-        <!-- Form -->
-
     </div>
 
+
+        </div>
+    </div>
 </div>
-<!-- Material form register -->
+
+<jsp:include page="parts/footer.jsp"></jsp:include>

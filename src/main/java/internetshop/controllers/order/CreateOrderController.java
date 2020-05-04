@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/order/complete")
 public class CreateOrderController extends HttpServlet {
-    private static final String USER_ID = "";
-
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private final ShoppingCartService shoppingCartService =
@@ -28,12 +26,12 @@ public class CreateOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        Long userId = (Long) req.getSession().getAttribute("user_id");
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         User user = shoppingCart.getUser();
         List<Product> products = List.copyOf(shoppingCart.getProducts());
         shoppingCartService.clear(shoppingCart);
         orderService.completeOrder(products, user);
-        resp.sendRedirect(req.getContextPath() + "/orders");
+        resp.sendRedirect(req.getContextPath() + "/order/all");
     }
 }

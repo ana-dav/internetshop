@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="parts/header.jsp"></jsp:include>
 <html>
@@ -30,6 +31,6 @@
         </tr>
     </c:forEach>
 </table>
-<a сlass="btn btn-info btn-block my-4 float-right" href="${pageContext.request.contextPath}/order/details">Complete Order</a>
+<a сlass="btn btn-info btn-block my-4 float-right" href="${pageContext.request.contextPath}/order/complete">Complete Order</a>
 </body>
 </html>

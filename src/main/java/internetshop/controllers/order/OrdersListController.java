@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/orders/all")
+@WebServlet("/order/all")
 public class OrdersListController extends HttpServlet {
-    private static final String USER_ID = "";
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private final OrderService orderService =
@@ -25,7 +24,7 @@ public class OrdersListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long userId = (Long) req.getSession().getAttribute(USER_ID);
+        Long userId = (Long) req.getSession().getAttribute("user_id");
         List<Order> orders = orderService.getUserOrders(userService.get(userId));
         req.setAttribute("orders", orders);
         req.getRequestDispatcher("/WEB-INF/views/orders/all.jsp").forward(req, resp);
