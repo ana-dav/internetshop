@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
-@Service
 public class LoginController extends HttpServlet {
     private final Injector INJECTOR = Injector.getInstance("internetshop");
     private final AuthenticationService authenticationService =
