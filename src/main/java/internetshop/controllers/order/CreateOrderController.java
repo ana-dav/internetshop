@@ -29,13 +29,10 @@ public class CreateOrderController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        //when i create order i pass in an empty list
-
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         User user = shoppingCart.getUser();
         List<Product> products = List.copyOf(shoppingCart.getProducts());
         orderService.completeOrder(products, user);
-        //req.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(req, resp);
         resp.sendRedirect(req.getContextPath()+ "/orders");
         shoppingCartService.clear(shoppingCart);
     }

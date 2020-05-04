@@ -11,7 +11,6 @@
         <td>ID</td>
         <td>Product</td>
         <td>Price</td>
-<%--        название элемента в листе--%>
         <c:forEach var="product" items="${products}">
     <tr>
         <td>
