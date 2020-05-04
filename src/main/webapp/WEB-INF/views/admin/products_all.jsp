@@ -12,24 +12,29 @@
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
+        <th>Delete</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
             <td>
-                <c:out value ="${product.getId()}"/>
+                <c:out value="${product.id}"/>
             </td>
             <td>
-                <c:out value ="${product.name}"/>
+                <c:out value="${product.name}"/>
             </td>
             <td>
-                <c:out value ="${product.price}"/>
+                <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/cart/delete?id=${product.getId()}">Delete</a>
+                <a href="${pageContext.request.contextPath}/products/delete?id=${product.getId()}">
+                    <button class="btn" type="submit">Delete</button>
+                </a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<a сlass="btn btn-info btn-block my-4 float-right" href="${pageContext.request.contextPath}/order">Complete Order</a>
+<a href="${pageContext.request.contextPath}/newprod?id=${product.getId()}">
+    <button class="btn" type="submit">Add new product</button>
+</a>
 </body>
 </html>
