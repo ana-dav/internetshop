@@ -1,5 +1,10 @@
 package internetshop.controllers.user;
 
+import internetshop.exceptions.AuthenticationException;
+import internetshop.lib.Injector;
+import internetshop.lib.Service;
+import internetshop.model.User;
+import internetshop.security.AuthenticationService;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,11 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import internetshop.exceptions.AuthenticationException;
-import internetshop.lib.Injector;
-import internetshop.lib.Service;
-import internetshop.model.User;
-import internetshop.security.AuthenticationService;
 
 @WebServlet("/login")
 @Service

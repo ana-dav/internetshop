@@ -1,7 +1,7 @@
 package internetshop.dao;
 
-import java.util.Optional;
 import internetshop.model.User;
+import java.util.Optional;
 
 public interface UserDao extends GenericDao<User, Long> {
 
