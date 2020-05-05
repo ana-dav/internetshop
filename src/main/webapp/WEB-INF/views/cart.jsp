@@ -26,7 +26,7 @@
                 <c:out value ="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/cart/deleteProduct?id=${product.getId()}">Delete</a>
+                <a href="${pageContext.request.contextPath}/cart/products/delete?id=${product.getId()}">Delete</a>
             </td>
         </tr>
     </c:forEach>

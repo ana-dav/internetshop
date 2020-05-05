@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/cart/deleteProduct")
+@WebServlet("/cart/products/delete")
 public class RemoveProductFromCartController extends HttpServlet {
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
