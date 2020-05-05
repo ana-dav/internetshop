@@ -18,9 +18,6 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/all">Products</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/cart">Cart</a>
             </li>
             <li class="nav-item">

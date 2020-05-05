@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/cart")
-public class ShoppingCartController extends HttpServlet {
+public class GetShoppingCartController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("internetshop");
     private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);

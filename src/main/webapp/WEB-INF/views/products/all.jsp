@@ -25,7 +25,7 @@
                             <c:out value ="${product.price}"/>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/products/addToCart?id=${product.getId()}">
+                            <a href="${pageContext.request.contextPath}/cart/products/add?id=${product.getId()}">
                                 <button class="btn" type="submit">Add to cart</button>
                             </a>
                         </td>
