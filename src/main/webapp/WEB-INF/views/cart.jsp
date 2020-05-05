@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="parts/header.jsp"></jsp:include>
 <html>
@@ -25,11 +26,11 @@
                 <c:out value ="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/cart/deleteProduct?id=${product.getId()}">Delete</a>
+                <a href="${pageContext.request.contextPath}/cart/products/delete?id=${product.getId()}">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<a сlass="btn btn-info btn-block my-4 float-right" href="${pageContext.request.contextPath}/order/details">Complete Order</a>
+<a сlass="btn btn-info btn-block my-4 float-right" href="${pageContext.request.contextPath}/order/complete">Complete Order</a>
 </body>
 </html>

@@ -1,12 +1,10 @@
 <jsp:include page="../parts/header.jsp"></jsp:include>
-<!-- Material form subscription -->
-<div class="card">
-
-    <h4 class="card-header info-color white-text text-center py-4">
-        <strong>Subscribe</strong>
-    </h4>
-
-    <!--Card content-->
+<h5 class="card-header info-color white-text text-center">
+    <strong>Sign up</strong>
+</h5>
+    <div class="container">
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-6 card">
     <div class="card-body px-lg-5">
         <h5 style="color: darkred">${errorMsg}</h5>
         <!-- Form -->
@@ -31,6 +29,7 @@
         <!-- Form -->
 
     </div>
-
+            </div>
+        </div>
 </div>
 <!-- Material form subscription -->

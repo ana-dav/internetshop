@@ -7,7 +7,7 @@
     <title>Internetshop</title>
 </head>
 <body>
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color scrolling-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,9 +16,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
                 <a class="nav-link" href="${pageContext.request.contextPath}/products/all">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/cart">Cart</a>

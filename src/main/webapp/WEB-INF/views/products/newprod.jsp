@@ -11,7 +11,7 @@
         <input name="name" type="text" placeholder="Name"
                value="${empty name?'product name':'value is NOT empty or null'}">
         <label>Price:</label>
-        <input name="price" type="text" placeholder="Price"
+        <input name="price" type="" placeholder="Price"
                value="${empty price?'product price':'value is NOT empty or null'}">
         <button class="btn btn-info btn-block my-4" type="submit">Add</button>
     </form>
