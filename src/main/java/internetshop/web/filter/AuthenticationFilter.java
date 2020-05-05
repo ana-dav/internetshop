@@ -3,6 +3,8 @@ package internetshop.web.filter;
 import internetshop.lib.Injector;
 import internetshop.service.UserService;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -18,10 +20,15 @@ public class AuthenticationFilter implements Filter {
             Injector.getInstance("internetshop");
     private UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
+    private Set<String> publicUrls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        publicUrls.add("/login");
+        publicUrls.add("/registration");
+        publicUrls.add("/logout");
+        publicUrls.add("/injectData");
+        publicUrls.add("/products/all");
     }
 
     @Override
@@ -30,8 +37,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String url = req.getServletPath();
-        if (url.equals("/login") || url.equals("/registration") || url.equals("/logout")
-                || url.equals("/injectData") || url.equals("/products/all")) {
+        if (publicUrls.contains(url)) {
             chain.doFilter(req, resp);
             return;
         }
