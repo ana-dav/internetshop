@@ -27,6 +27,7 @@ public class AuthorisationFilter implements Filter {
         protectedUrls.put("/products/admin", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/orders/all", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/order/complete", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/cart", Set.of(Role.RoleName.USER));
     }
 
     @Override
