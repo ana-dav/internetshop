@@ -66,7 +66,6 @@ public class AuthorizationFilter implements Filter {
         if (isAuthorized(user, protectedUrls.get(requestedUrl))) {
             chain.doFilter(req, resp);
         } else {
-            //користувач з айді = айді пробував зайти на url, до якого немає доступу
             LOGGER.warn(" user " + user.getId() + "tries to reach" + protectedUrls.get(requestedUrl) + "url");
             req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
         }
