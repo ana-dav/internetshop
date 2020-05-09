@@ -2,7 +2,6 @@ package internetshop.controllers.user;
 
 import internetshop.exceptions.AuthenticationException;
 import internetshop.lib.Injector;
-import internetshop.lib.Service;
 import internetshop.model.User;
 import internetshop.security.AuthenticationService;
 import java.io.IOException;
