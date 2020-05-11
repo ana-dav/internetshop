@@ -17,25 +17,24 @@ import java.util.Optional;
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product product) {
-        String putQuery = "INSERT INTO products (product_id, name, price) VALUES (?, ?, ?)";
+        String putQuery = "INSERT INTO products (name, price) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(putQuery,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(2, product.getName());
-            preparedStatement.setBigDecimal(3, product.getPrice());
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setBigDecimal(2, product.getPrice());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            while (resultSet.next()) {
-                long productId = resultSet.getLong("product_id");
+            resultSet.next();
+                Long productId = resultSet.getLong("product_id");
                 String name = resultSet.getString("name");
                 BigDecimal price = resultSet.getBigDecimal("price");
                 product = new Product(name, price);
                 product.setId(productId);
-            }
+            return product;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
-        return product;
     }
 
     @Override
@@ -67,7 +66,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                long productId = resultSet.getLong("product_id");
+                Long productId = resultSet.getLong("product_id");
                 String productName = resultSet.getString("name");
                 BigDecimal productPrice = resultSet.getBigDecimal("price");
                 Product product = new Product(productName, productPrice);
@@ -107,4 +106,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+
 }
