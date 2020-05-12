@@ -9,7 +9,6 @@ import internetshop.service.ProductService;
 import internetshop.service.ShoppingCartService;
 import internetshop.service.UserService;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

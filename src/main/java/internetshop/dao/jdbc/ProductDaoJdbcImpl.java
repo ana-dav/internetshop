@@ -22,18 +22,17 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(putQuery,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-
             preparedStatement.setString(1, product.getName());
             preparedStatement.setBigDecimal(2, product.getPrice());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                Long productId = resultSet.getLong("product_id");
+                Long productId = resultSet.getLong(1);
                 product.setId(productId);
             }
             return product;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement");
+            throw new DataProcessingException("Can't create statement", e);
         }
     }
 
@@ -48,7 +47,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return Optional.of(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement");
+            throw new DataProcessingException("Can't create statement", e);
         }
         return Optional.empty();
     }
@@ -64,7 +63,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 all.add(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement");
+            throw new DataProcessingException("Can't create statement", e);
         }
         return all;
     }
@@ -79,7 +78,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             preparedStatement.setBigDecimal(3, element.getPrice());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement");
+            throw new DataProcessingException("Can't create statement", e);
         }
         return element;
     }
@@ -93,7 +92,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement");
+            throw new DataProcessingException("Can't create statement", e);
         }
     }
 
