@@ -1,6 +1,7 @@
 package internetshop.dao.jdbc;
 
 import internetshop.dao.ProductDao;
+import internetshop.exceptions.DataProcessingException;
 import internetshop.lib.Dao;
 import internetshop.model.Product;
 import internetshop.util.ConnectionUtil;
@@ -21,19 +22,18 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(putQuery,
                     PreparedStatement.RETURN_GENERATED_KEYS);
+
             preparedStatement.setString(1, product.getName());
             preparedStatement.setBigDecimal(2, product.getPrice());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            resultSet.next();
+            if (resultSet.next()) {
                 Long productId = resultSet.getLong("product_id");
-                String name = resultSet.getString("name");
-                BigDecimal price = resultSet.getBigDecimal("price");
-                product = new Product(name, price);
                 product.setId(productId);
+            }
             return product;
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataProcessingException("Can't create statement");
         }
     }
 
@@ -45,15 +45,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                long productId = resultSet.getLong("product_id");
-                String productName = resultSet.getString("name");
-                BigDecimal productPrice = resultSet.getBigDecimal("price");
-                Product product = new Product(productName, productPrice);
-                product.setId(productId);
-                return Optional.of(product);
+                return Optional.of(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataProcessingException("Can't create statement");
         }
         return Optional.empty();
     }
@@ -66,15 +61,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Long productId = resultSet.getLong("product_id");
-                String productName = resultSet.getString("name");
-                BigDecimal productPrice = resultSet.getBigDecimal("price");
-                Product product = new Product(productName, productPrice);
-                product.setId(productId);
-                all.add(product);
+                all.add(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataProcessingException("Can't create statement");
         }
         return all;
     }
@@ -89,7 +79,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             preparedStatement.setBigDecimal(3, element.getPrice());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataProcessingException("Can't create statement");
         }
         return element;
     }
@@ -103,9 +93,16 @@ public class ProductDaoJdbcImpl implements ProductDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataProcessingException("Can't create statement");
         }
     }
 
-
+    private Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
+        Long productId = resultSet.getLong("product_id");
+        String name = resultSet.getString("name");
+        BigDecimal price = resultSet.getBigDecimal("price");
+        Product product = new Product(name, price);
+        product.setId(productId);
+        return product;
+    }
 }
