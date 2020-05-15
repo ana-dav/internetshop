@@ -35,9 +35,7 @@ public class AuthorizationFilter implements Filter {
         protectedUrls.put("/orders/all", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/order/complete", Set.of(Role.RoleName.USER));
         protectedUrls.put("/cart", Set.of(Role.RoleName.USER));
-        protectedUrls.put("/user/orders", Set.of(Role.RoleName.USER));
-        protectedUrls.put("/user/orders", Set.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/order/details", Set.of(Role.RoleName.ADMIN));
+        //protectedUrls.put("/user/orders", Set.of(Role.RoleName.USER));
         protectedUrls.put("/order/details", Set.of(Role.RoleName.USER));
         protectedUrls.put("/order/delete", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/delete", Set.of(Role.RoleName.ADMIN));
@@ -82,7 +80,6 @@ public class AuthorizationFilter implements Filter {
                 if (authorizedRole.equals(userRole.getRoleName())) {
                     return true;
                 }
-
             }
         }
         return false;

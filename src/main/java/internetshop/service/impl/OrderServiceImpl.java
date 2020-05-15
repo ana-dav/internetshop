@@ -20,9 +20,9 @@ public class OrderServiceImpl implements OrderService {
     private ShoppingCartService cartService;
 
     @Override
-    public Order completeOrder(List<Product> products, User user) {
-        Order order = new Order(products, user);
-        cartService.getByUserId(user.getId())
+    public Order completeOrder(List<Product> products, Long userId) {
+        Order order = new Order(products, userId);
+        cartService.getByUserId(userId)
                 .getProducts().clear();
         return orderDao.create(order);
     }
@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getUserOrders(User user) {
         return Storage.orders.stream()
-                .filter(o -> o.getUser().getId().equals(user.getId()))
+                .filter(o -> o.getUserId().equals(user.getId()))
                 .collect(Collectors.toList());
     }
 
