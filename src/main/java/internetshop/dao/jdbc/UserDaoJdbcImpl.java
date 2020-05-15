@@ -157,10 +157,12 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     private void addUserRoles(User user) {
-        String query = "INSERT INTO users_roles (user_id, role_id) VALUES (?, (SELECT role_id from roles WHERE role_name = ?));";
+        String query = "INSERT INTO users_roles (user_id, role_id) "
+                + "VALUES (?, (SELECT role_id from roles WHERE role_name = ?));";
         try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
             for (Role role : user.getRoles()) {
-                PreparedStatement statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
                 statement.setLong(1, user.getId());
                 statement.setString(2, String.valueOf(role.getRoleName()));
                 statement.executeUpdate();

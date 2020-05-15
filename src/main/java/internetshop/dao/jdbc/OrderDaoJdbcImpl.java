@@ -39,8 +39,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Optional<Order> get(Long id) {
+        String query = "SELECT * FROM orders WHERE order_id=?";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "SELECT * FROM orders WHERE order_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -93,10 +93,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private void addProductsToOrder(Order order) {
+        String query = "INSERT INTO orders_products (order_id, product_id) values(?,?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             for (Product product : order.getProducts()) {
-                String query = "INSERT INTO orders_products (order_id, product_id) values(?,?)";
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setLong(1, order.getId());
                 preparedStatement.setLong(2, product.getId());
                 preparedStatement.executeUpdate();
@@ -140,8 +140,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private void deleteProductsFromOrder (Order order) {
+        String query = "DELETE FROM orders_products WHERE order_id=?";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "DELETE FROM orders_products WHERE order_id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, order.getId());
             preparedStatement.executeUpdate();
