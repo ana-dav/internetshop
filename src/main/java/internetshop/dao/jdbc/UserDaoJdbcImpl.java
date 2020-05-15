@@ -30,7 +30,6 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-
     @Override
     public User create(User user) {
         String query = "INSERT INTO users (name, login, password) values (?,?,?)";
