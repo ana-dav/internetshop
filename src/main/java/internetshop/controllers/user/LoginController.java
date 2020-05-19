@@ -5,8 +5,6 @@ import internetshop.lib.Injector;
 import internetshop.model.User;
 import internetshop.security.AuthenticationService;
 import java.io.IOException;
-import javax.print.attribute.standard.RequestingUserName;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +14,9 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
-    private final Injector INJECTOR = Injector.getInstance("internetshop");
+    private final Injector injector = Injector.getInstance("internetshop");
     private final AuthenticationService authenticationService =
-            (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
+            (AuthenticationService) injector.getInstance(AuthenticationService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

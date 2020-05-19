@@ -9,7 +9,6 @@ import internetshop.model.User;
 import internetshop.service.OrderService;
 import internetshop.service.ShoppingCartService;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getUserOrders(User user) {
-return null;
+        return null;
         //method from the db
 //        return Storage.orders.stream()
 //                .filter(o -> o.getUserId().equals(user.getId()))

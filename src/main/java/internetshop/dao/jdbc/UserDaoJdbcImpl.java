@@ -10,7 +10,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
@@ -130,7 +134,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     private Set<Role> getUserRoles(Long userId) {
         Set<Role> roles = new HashSet<>();
-        String query =  "SELECT role_name FROM users_roles"
+        String query = "SELECT role_name FROM users_roles"
                 + " JOIN roles USING (role_id) WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);

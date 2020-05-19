@@ -9,14 +9,6 @@ public class User {
     private String password;
     private Set<Role> roles;
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
     public User(String name, String login, String password) {
         this.name = name;
         this.login = login;
@@ -28,6 +20,14 @@ public class User {
         name = user.getName();
         login = user.getLogin();
         password = user.getPassword();
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {

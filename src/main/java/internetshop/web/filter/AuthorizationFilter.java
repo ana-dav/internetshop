@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 
 public class AuthorizationFilter implements Filter {
     private static final String USER_ID = "user_id";
-    private final static Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private final UserService userService =
@@ -64,17 +64,17 @@ public class AuthorizationFilter implements Filter {
         if (isAuthorized(user, protectedUrls.get(requestedUrl))) {
             chain.doFilter(req, resp);
         } else {
-            LOGGER.warn(" user " + user.getId() + "tries to reach" + protectedUrls.get(requestedUrl) + "url");
+            LOGGER.warn(" user " + user.getId() + "tries to reach"
+                    + protectedUrls.get(requestedUrl) + "url");
             req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
         }
     }
 
     @Override
     public void destroy() {
-
     }
 
-    private boolean isAuthorized (User user, Set<Role.RoleName> authorizedRoles) {
+    private boolean isAuthorized(User user, Set<Role.RoleName> authorizedRoles) {
         for (Role.RoleName authorizedRole : authorizedRoles) {
             for (Role userRole: user.getRoles()) {
                 if (authorizedRole.equals(userRole.getRoleName())) {

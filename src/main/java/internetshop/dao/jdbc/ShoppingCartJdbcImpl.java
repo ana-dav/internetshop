@@ -1,5 +1,11 @@
 package internetshop.dao.jdbc;
 
+import internetshop.dao.ShoppingCartDao;
+import internetshop.exceptions.DataProcessingException;
+import internetshop.lib.Dao;
+import internetshop.model.Product;
+import internetshop.model.ShoppingCart;
+import internetshop.util.ConnectionUtil;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,32 +14,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import internetshop.dao.ShoppingCartDao;
-import internetshop.exceptions.DataProcessingException;
-import internetshop.lib.Dao;
-import internetshop.model.Product;
-import internetshop.model.ShoppingCart;
-import internetshop.util.ConnectionUtil;
 
 @Dao
 public class ShoppingCartJdbcImpl implements ShoppingCartDao {
-@Override
-public ShoppingCart create(ShoppingCart cart) {
-    String query = "INSERT INTO shopping_carts (user_id) VALUES (?);";
-    try (Connection connection = ConnectionUtil.getConnection()) {
-        PreparedStatement statement = connection.prepareStatement(query,
-                PreparedStatement.RETURN_GENERATED_KEYS);
-        statement.setLong(1, cart.getUserId());
-        statement.executeUpdate();
-        ResultSet resultSet = statement.getGeneratedKeys();
-        resultSet.next();
-        cart.setId(resultSet.getLong(1));
-        addCartsProducts(cart);
-        return cart;
-    } catch (SQLException e) {
-        throw new DataProcessingException("Unable to create " + cart, e);
+    @Override
+    public ShoppingCart create(ShoppingCart cart) {
+        String query = "INSERT INTO shopping_carts (user_id) VALUES (?)";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            statement.setLong(1, cart.getUserId());
+            statement.executeUpdate();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            resultSet.next();
+            cart.setId(resultSet.getLong(1));
+            addCartsProducts(cart);
+            return cart;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Unable to create " + cart, e);
+        }
     }
-}
 
     @Override
     public Optional<ShoppingCart> get(Long id) {
@@ -104,7 +104,8 @@ public ShoppingCart create(ShoppingCart cart) {
     }
 
     private void addCartsProducts(ShoppingCart cart) {
-        String insertCartsProductsQuery = "INSERT INTO shopping_cart_products (cart_id, product_id) VALUES (?, ?)";
+        String insertCartsProductsQuery = "INSERT INTO "
+                + "shopping_cart_products (cart_id, product_id) VALUES (?, ?)";
         /////////////doesn't add here!!!!!!!!!!!!!!!!
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement =

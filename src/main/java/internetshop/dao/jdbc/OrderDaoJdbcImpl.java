@@ -1,5 +1,11 @@
 package internetshop.dao.jdbc;
 
+import internetshop.dao.OrderDao;
+import internetshop.exceptions.DataProcessingException;
+import internetshop.lib.Dao;
+import internetshop.model.Order;
+import internetshop.model.Product;
+import internetshop.util.ConnectionUtil;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,12 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import internetshop.dao.OrderDao;
-import internetshop.exceptions.DataProcessingException;
-import internetshop.lib.Dao;
-import internetshop.model.Order;
-import internetshop.model.Product;
-import internetshop.util.ConnectionUtil;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
@@ -26,7 +26,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             preparedStatement.setLong(1, order.getUserId());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 Long orderId = resultSet.getLong(1);
                 order.setId(orderId);
             }
@@ -157,7 +157,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private void deleteProductsFromOrder (Order order) {
+    private void deleteProductsFromOrder(Order order) {
         String query = "DELETE FROM orders_products WHERE order_id=?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
