@@ -1,7 +1,6 @@
 package internetshop.service.impl;
 
 import internetshop.dao.OrderDao;
-import internetshop.db.Storage;
 import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.Order;
@@ -29,11 +28,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getUserOrders(User user) {
-
+return null;
         //method from the db
-        return Storage.orders.stream()
-                .filter(o -> o.getUserId().equals(user.getId()))
-                .collect(Collectors.toList());
+//        return Storage.orders.stream()
+//                .filter(o -> o.getUserId().equals(user.getId()))
+//                .collect(Collectors.toList());
     }
 
     @Override
