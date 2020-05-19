@@ -3,7 +3,6 @@ package internetshop.controllers.order;
 import internetshop.lib.Injector;
 import internetshop.model.Product;
 import internetshop.model.ShoppingCart;
-import internetshop.model.User;
 import internetshop.service.OrderService;
 import internetshop.service.ShoppingCartService;
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class CreateOrderController extends HttpServlet {
             throws ServletException, IOException {
         Long userId = (Long) req.getSession().getAttribute("user_id");
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
-        User user = shoppingCart.getUser();
+        Long user = shoppingCart.getUserId();
         List<Product> products = List.copyOf(shoppingCart.getProducts());
         shoppingCartService.clear(shoppingCart);
         orderService.completeOrder(products, user);

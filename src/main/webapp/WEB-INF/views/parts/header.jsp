@@ -27,7 +27,7 @@
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/products/admin">All Products</a>
             </li>
             <li class="nav-item">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/orders/all">All Orders</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/user/orders">All Orders</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
