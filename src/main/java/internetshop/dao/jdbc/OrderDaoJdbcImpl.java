@@ -92,6 +92,24 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
+//    //добавить поиск ордера по айди юзера - как get только по айди юзера
+//    public Optional<Order> searchByUserId(Long userId) {
+//        String query = "SELECT * FROM orders WHERE user_id=?";
+//        try (Connection connection = ConnectionUtil.getConnection()) {
+//            PreparedStatement preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setLong(1, userId);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            if (resultSet.next()) {
+//                //here duplicate order search by User id?
+//                // Order order = getOrderFromResultSet(resultSet);
+//                return Optional.of(order);
+//            }
+//        } catch (SQLException e) {
+//            throw new DataProcessingException("Can't create statement", e);
+//        }
+//        return Optional.empty();
+//    }
+
     private void addProductsToOrder(Order order) {
         String query = "INSERT INTO orders_products (order_id, product_id) values(?,?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
