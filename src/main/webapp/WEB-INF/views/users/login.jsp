@@ -32,4 +32,4 @@
             </div>
         </div>
 </div>
-<jsp:include page="parts/footer.jsp"></jsp:include>
+<jsp:include page="../parts/footer.jsp"></jsp:include>
