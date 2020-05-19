@@ -19,30 +19,15 @@ import java.util.Set;
 @Dao
 public class UserDaoJdbcImpl implements UserDao {
     @Override
-    public Optional<User> findByLogin(String login) {
-        String query = "SELECT * FROM users WHERE login = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, login);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return Optional.of(getUserFromResultSet(resultSet));
-            }
-            return Optional.empty();
-        } catch (SQLException e) {
-            throw new DataProcessingException("Can`t find user with login ", e);
-        }
-    }
-
-    @Override
     public User create(User user) {
-        String query = "INSERT INTO users (name, login, password) values (?,?,?)";
+        String query = "INSERT INTO users (name, login, password, salt) values (?,?,?,?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
+            statement.setBytes(4, user.getSalt());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             while (resultSet.next()) {
@@ -121,12 +106,31 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
+    @Override
+    public Optional<User> findByLogin(String login) {
+        String query = "SELECT * FROM users WHERE login = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return Optional.of(getUserFromResultSet(resultSet));
+            }
+            return Optional.empty();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can`t find user with login ", e);
+        }
+    }
+
+
     private User getUserFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("user_id");
         String name = resultSet.getString("name");
         String login = resultSet.getString("login");
         String password = resultSet.getString("password");
         User user = new User(name, login, password);
+        byte[] salt = resultSet.getBytes("salt");
+        user.setSalt(salt);
         user.setId(id);
         getUserRoles(user.getId());
         return user;

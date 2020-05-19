@@ -5,6 +5,7 @@ import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.User;
 import internetshop.service.UserService;
+import internetshop.util.HashUtil;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -16,7 +17,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throws AuthenticationException {
         User userFromDB = userService.findByLogin(login).orElseThrow(() ->
                 new ArithmeticException("Incorrect login or password"));
-        if (userFromDB.getPassword().equals(password)) {
+        if (HashUtil.hashPassword(password, userFromDB.getSalt()).equals(userFromDB.getPassword())) {
             return userFromDB;
         }
         throw new AuthenticationException("Incorrect login or password");
