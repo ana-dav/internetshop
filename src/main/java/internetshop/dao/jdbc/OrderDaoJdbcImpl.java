@@ -71,6 +71,23 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     @Override
+    public List<Order> getUserOrders(Long userId) {
+        String query = "SELECT * FROM orders WHERE user_id= ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Order> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(getOrderFromResultSet(resultSet));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get all products from users order", e);
+        }
+    }
+
+    @Override
     public Order update(Order order) {
         deleteProductsFromOrder(order);
         addProductsToOrder(order);
@@ -107,7 +124,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
-        //he took the 1st row
         Long orderId = resultSet.getLong("order_id");
         Long userId = resultSet.getLong("user_id");
         Order order = new Order(getProductsFromOrder(orderId), userId);

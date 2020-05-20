@@ -25,9 +25,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getUserOrders(Long userId) {
-        return orderDao.getAll().stream()
-                .filter(order -> order.getUserId().equals(userId))
-                .collect(Collectors.toList());
+        return orderDao.getUserOrders(userId);
+//        return orderDao.getAll().stream()
+//                .filter(order -> order.getUserId().equals(userId))
+//                .collect(Collectors.toList());
     }
 
     @Override
