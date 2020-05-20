@@ -21,7 +21,7 @@
                 <c:out value ="${order.getId()}"/>
             </td>
             <td>
-                <c:out value ="${order.userId.getName()}"/>
+                <c:out value ="${order.userId}"/>
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}/order/details?id=${order.getId()}">Details</a>

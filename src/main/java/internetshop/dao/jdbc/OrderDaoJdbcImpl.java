@@ -64,10 +64,10 @@ public class OrderDaoJdbcImpl implements OrderDao {
             while (resultSet.next()) {
                 orders.add(getOrderFromResultSet(resultSet));
             }
+            return orders;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get all products from orders", e);
         }
-        return null;
     }
 
     @Override
@@ -111,12 +111,12 @@ public class OrderDaoJdbcImpl implements OrderDao {
 //    }
 
     private void addProductsToOrder(Order order) {
-        String query = "INSERT INTO orders_products (order_id, product_id) values(?,?)";
+        String query = "INSERT INTO orders_products (product_id, order_id) values(?,?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             for (Product product : order.getProducts()) {
-                preparedStatement.setLong(1, order.getId());
-                preparedStatement.setLong(2, product.getId());
+                preparedStatement.setLong(1, product.getId());
+                preparedStatement.setLong(2, order.getId());
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -125,19 +125,20 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private Order getOrderFromResultSet(ResultSet resultSet) throws SQLException {
-        Long orderId = resultSet.getLong(1);
-        Long userId = resultSet.getLong(2);
+        //he took the 1st row
+        Long orderId = resultSet.getLong("order_id");
+        Long userId = resultSet.getLong("user_id");
         Order order = new Order(getProductsFromOrder(orderId), userId);
         order.setId(orderId);
         return order;
     }
 
     private List<Product> getProductsFromOrder(Long orderId) {
-        String query = "SELECT product_id, products.name, products.price"
-                + "FROM orders_products"
-                + "INNER JOIN products"
-                + "ON  orders_products.product_id=products.product_id"
-                + "WHERE orders_products.order_id = ?;";
+        String query = "SELECT products.product_id, products.name, products.price"
+                + " FROM orders_products"
+                + " JOIN products"
+                + " ON  orders_products.product_id=products.product_id"
+                + " WHERE orders_products.order_id = ?;";
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);

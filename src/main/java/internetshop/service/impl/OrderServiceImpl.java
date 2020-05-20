@@ -5,10 +5,10 @@ import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.Order;
 import internetshop.model.Product;
-import internetshop.model.User;
 import internetshop.service.OrderService;
 import internetshop.service.ShoppingCartService;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -20,18 +20,17 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order completeOrder(List<Product> products, Long userId) {
         Order order = new Order(products, userId);
-        cartService.getByUserId(userId)
-                .getProducts().clear();
+        //clearing twice?
+//        cartService.getByUserId(userId)
+//                .getProducts().clear();
         return orderDao.create(order);
     }
 
     @Override
-    public List<Order> getUserOrders(User user) {
-        return null;
-        //method from the db
-//        return Storage.orders.stream()
-//                .filter(o -> o.getUserId().equals(user.getId()))
-//                .collect(Collectors.toList());
+    public List<Order> getUserOrders(Long userId) {
+        return orderDao.getAll().stream()
+                .filter(order -> order.getUserId().equals(userId))
+                .collect(Collectors.toList());
     }
 
     @Override

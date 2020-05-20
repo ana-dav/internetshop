@@ -31,7 +31,6 @@ public class LoginController extends HttpServlet {
         String pass = req.getParameter("pass");
         try {
             User user = authenticationService.login(login, pass);
-            //session
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getId());
         } catch (AuthenticationException e) {

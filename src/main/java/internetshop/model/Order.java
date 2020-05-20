@@ -1,6 +1,7 @@
 package internetshop.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
     private Long id;
@@ -34,6 +35,21 @@ public class Order {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(id, order.id) &&
+                Objects.equals(products, order.products) &&
+                Objects.equals(userId, order.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, products, userId);
     }
 
     @Override
