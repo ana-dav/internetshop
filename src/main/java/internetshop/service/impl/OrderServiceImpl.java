@@ -8,7 +8,6 @@ import internetshop.model.Product;
 import internetshop.service.OrderService;
 import internetshop.service.ShoppingCartService;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -26,9 +25,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getUserOrders(Long userId) {
         return orderDao.getUserOrders(userId);
-//        return orderDao.getAll().stream()
-//                .filter(order -> order.getUserId().equals(userId))
-//                .collect(Collectors.toList());
     }
 
     @Override
