@@ -75,6 +75,13 @@
                     <linkXRef>false</linkXRef>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webXml>src\main\webapp\web.xml</webXml>
+                </configuration>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -90,5 +97,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
     </build>
 </project>
