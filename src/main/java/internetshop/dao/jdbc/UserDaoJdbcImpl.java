@@ -122,7 +122,6 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-
     private User getUserFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("user_id");
         String name = resultSet.getString("name");

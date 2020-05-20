@@ -20,9 +20,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order completeOrder(List<Product> products, Long userId) {
         Order order = new Order(products, userId);
-        //clearing twice?
-//        cartService.getByUserId(userId)
-//                .getProducts().clear();
         return orderDao.create(order);
     }
 
