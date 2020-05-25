@@ -1,36 +1,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="parts/header.jsp"></jsp:include>
-<html>
-<head>
-    <title>All products</title>
-</head>
-<body>
-<h1>All products page</h1>
-
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-    </tr>
-    <c:forEach var="product" items="${products}">
-        <tr>
-            <td>
-                <c:out value ="${product.getId()}"/>
-            </td>
-            <td>
-                <c:out value ="${product.name}"/>
-            </td>
-            <td>
-                <c:out value ="${product.price}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/cart/products/delete?id=${product.getId()}">Delete</a>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
-<a сlass="btn btn-info btn-block my-4 float-right" href="${pageContext.request.contextPath}/order/complete">Complete Order</a>
-</body>
-</html>
+<div class="container">
+    <div class="row d-flex justify-content-center mt-5">
+        <div class="col-6">
+            <table class="table">
+                <thead class="orange white-text">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <c:forEach var="product" items="${products}">
+                    <tr>
+                        <td>
+                            <c:out value ="${product.getId()}"/>
+                        </td>
+                        <td>
+                            <c:out value ="${product.name}"/>
+                        </td>
+                        <td>
+                            <c:out value ="${product.price}"/>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/cart/products/delete?id=${product.id}">
+                                <button class="btn" type="submit">Delete</button>
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+            <a href="${pageContext.request.contextPath}/order/complete">
+                <button class="btn" type="submit">Complete Order</button>
+            </a>
+            </tbody>
+        </div>
+    </div>
+</div>

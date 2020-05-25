@@ -1,30 +1,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../parts/header.jsp"></jsp:include>
-<html>
 <head>
     <title>Order</title>
 </head>
-<body>
-<h1>Order details</h1>
-<table border="1">
-    <tr>
-        <td>Product ID</td>
-        <td>Product</td>
-        <td>Price</td>
-        <c:forEach var="product" items="${products}">
-    <tr>
-        <td>
-            <c:out value="${product.id}"/>
-        </td>
-        <td>
-            <c:out value="${product.name}"/>
-        </td>
-        <td>
-            <c:out value="${product.price}"/>
-        </td>
-    </tr>
-    </c:forEach>
-</table>
-</body>
-</html>
+<div class="container">
+    <div class="row d-flex justify-content-center mt-5">
+        <div class="col-6">
+            <table class="table">
+                <thead class="orange white-text">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <c:forEach var="product" items="${products}">
+                    <tr>
+                        <td>
+                            <c:out value="${product.id}"/>
+                        </td>
+                        <td>
+                            <c:out value="${product.name}"/>
+                        </td>
+                        <td>
+                            <c:out value="${product.price}"/>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+            </tbody>
+        </div>
+    </div>
+</div>

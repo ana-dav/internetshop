@@ -41,6 +41,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/injectData">Inject test data</a>
+            </li>
         </ul>
     </div>
 </nav>

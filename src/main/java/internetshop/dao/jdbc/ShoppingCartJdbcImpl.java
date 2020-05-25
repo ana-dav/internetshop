@@ -106,7 +106,6 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
     private void addCartsProducts(ShoppingCart cart) {
         String insertCartsProductsQuery = "INSERT INTO "
                 + "shopping_cart_products (cart_id, product_id) VALUES (?, ?)";
-        /////////////doesn't add here!!!!!!!!!!!!!!!!
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement(insertCartsProductsQuery);
