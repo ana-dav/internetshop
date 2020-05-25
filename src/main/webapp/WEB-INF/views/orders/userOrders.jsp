@@ -3,17 +3,15 @@
 <jsp:include page="../parts/header.jsp"></jsp:include>
 <html>
 <head>
-    <title>All orders</title>
+    <title>All user orders</title>
 </head>
 <body>
-<h1>All orders page</h1>
+<h1>User orders page</h1>
 
 <table border="1">
     <tr>
-        <th>ID</th>
-        <th>User</th>
+        <th>Order ID</th>
         <th>Details</th>
-        <th>Delete</th>
     </tr>
     <c:forEach var="order" items="${orders}">
         <tr>
@@ -21,13 +19,7 @@
                 <c:out value ="${order.getId()}"/>
             </td>
             <td>
-                <c:out value ="${order.userId}"/>
-            </td>
-            <td>
                 <a href="${pageContext.request.contextPath}/order/details?id=${order.getId()}">Details</a>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/order/delete?id=${order.getId()}">Delete</a>
             </td>
         </tr>
     </c:forEach>

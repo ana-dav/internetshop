@@ -9,7 +9,7 @@
 <h1>Order details</h1>
 <table border="1">
     <tr>
-        <td>ID</td>
+        <td>Product ID</td>
         <td>Product</td>
         <td>Price</td>
         <c:forEach var="product" items="${products}">
