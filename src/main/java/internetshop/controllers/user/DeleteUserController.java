@@ -3,7 +3,6 @@ package internetshop.controllers.user;
 import internetshop.lib.Injector;
 import internetshop.service.UserService;
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ public class DeleteUserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         String userId = req.getParameter("id");
         Long id = Long.valueOf(userId);
         userService.delete(id);

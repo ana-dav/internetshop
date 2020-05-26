@@ -33,7 +33,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             addProductsToOrder(order);
             return order;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create order", e);
+            throw new DataProcessingException("Can't create order");
         }
     }
 
@@ -49,7 +49,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 return Optional.of(order);
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement", e);
+            throw new DataProcessingException("Can't create statement");
         }
         return Optional.empty();
     }
@@ -66,7 +66,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return orders;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get all products from orders", e);
+            throw new DataProcessingException("Can't get all products from orders");
         }
     }
 
@@ -83,7 +83,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return list;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get all products from users order", e);
+            throw new DataProcessingException("Can't get all products from users order");
         }
     }
 
@@ -105,7 +105,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete order", e);
+            throw new DataProcessingException("Can't delete order");
         }
     }
 
@@ -119,7 +119,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't add products to order", e);
+            throw new DataProcessingException("Can't add products to order");
         }
     }
 
@@ -152,7 +152,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             }
             return products;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't receive orders products", e);
+            throw new DataProcessingException("Can't receive orders products");
         }
     }
 
@@ -163,7 +163,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             preparedStatement.setLong(1, order.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete products from orders_products", e);
+            throw new DataProcessingException("Can't delete products from orders_products");
         }
     }
 }

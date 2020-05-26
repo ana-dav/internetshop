@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetAllUsersController extends HttpServlet {
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private UserService userService =
+    private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override

@@ -21,11 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 public class InjectDataController extends HttpServlet {
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private UserService userService =
+    private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
-    private ProductService productService =
+    private final ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
-    private ShoppingCartService shoppingCartService =
+    private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
 
     @Override

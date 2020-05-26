@@ -6,7 +6,6 @@ import internetshop.model.ShoppingCart;
 import internetshop.service.ProductService;
 import internetshop.service.ShoppingCartService;
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,7 @@ public class AddProductToCartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         Long userId = (Long) req.getSession().getAttribute("user_id");
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         Product product = productService.get(Long.parseLong(req.getParameter("id")));

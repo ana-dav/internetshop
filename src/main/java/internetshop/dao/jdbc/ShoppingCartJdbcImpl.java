@@ -31,7 +31,7 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
             addCartsProducts(cart);
             return cart;
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to create " + cart, e);
+            throw new DataProcessingException("Unable to create " + cart);
         }
     }
 
@@ -49,7 +49,7 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to get cart with ID " + id, e);
+            throw new DataProcessingException("Unable to get cart with ID " + id);
         }
     }
 
@@ -63,11 +63,10 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
             statement.setLong(2, cart.getId());
             statement.executeUpdate();
             deleteShoppingCartFromCartsProducts(cart.getId());
-            //doesn't add
             addCartsProducts(cart);
             return cart;
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to update " + cart, e);
+            throw new DataProcessingException("Unable to update " + cart);
         }
     }
 
@@ -81,7 +80,7 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to delete cart with ID " + id, e);
+            throw new DataProcessingException("Unable to delete cart with ID " + id);
         }
     }
 
@@ -99,7 +98,7 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
             }
             return allShoppingCarts;
         } catch (SQLException e) {
-            throw new DataProcessingException("Unable to retrieve all carts", e);
+            throw new DataProcessingException("Unable to retrieve all carts");
         }
     }
 
@@ -115,7 +114,7 @@ public class ShoppingCartJdbcImpl implements ShoppingCartDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't add cart products", e);
+            throw new DataProcessingException("Can't add cart products");
         }
     }
 

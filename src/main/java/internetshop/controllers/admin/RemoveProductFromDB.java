@@ -3,7 +3,6 @@ package internetshop.controllers.admin;
 import internetshop.lib.Injector;
 import internetshop.service.ProductService;
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +17,8 @@ public class RemoveProductFromDB extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         String productId = req.getParameter("id");
-
         Long id = Long.valueOf(productId);
         productService.delete(id);
         resp.sendRedirect(req.getContextPath() + "/products/admin");

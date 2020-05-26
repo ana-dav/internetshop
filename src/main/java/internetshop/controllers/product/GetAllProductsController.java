@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetAllProductsController extends HttpServlet {
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private ProductService productService =
+    private final ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
@@ -23,7 +23,6 @@ public class GetAllProductsController extends HttpServlet {
             throws ServletException, IOException {
         List<Product> allProducts = productService.getAll();
         req.setAttribute("products", allProducts);
-
         req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
     }
 }

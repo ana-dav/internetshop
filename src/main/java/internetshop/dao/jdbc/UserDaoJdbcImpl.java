@@ -36,7 +36,7 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return user;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can`t create user", e);
+            throw new DataProcessingException("Can`t create user");
         }
     }
 
@@ -54,7 +54,7 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can`t get user with id ", e);
+            throw new DataProcessingException("Can`t get user with id ");
         }
     }
 
@@ -70,7 +70,7 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return users;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can`t get list of users", e);
+            throw new DataProcessingException("Can`t get list of users");
         }
     }
 
@@ -88,7 +88,7 @@ public class UserDaoJdbcImpl implements UserDao {
             addUserRoles(user);
             return user;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can`t update user", e);
+            throw new DataProcessingException("Can`t update user");
         }
     }
 
@@ -102,7 +102,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can`t delete user", e);
+            throw new DataProcessingException("Can`t delete user");
         }
     }
 
@@ -118,7 +118,7 @@ public class UserDaoJdbcImpl implements UserDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can`t find user with login ", e);
+            throw new DataProcessingException("Can`t find user with login ");
         }
     }
 
@@ -147,7 +147,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 roles.add(Role.of(resultSet.getString("role_name")));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get roles of user", e);
+            throw new DataProcessingException("Can't get roles of user");
         }
         return roles;
     }
@@ -159,7 +159,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete roles of user", e);
+            throw new DataProcessingException("Can't delete roles of user");
         }
     }
 
@@ -180,7 +180,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't add roles of user", e);
+            throw new DataProcessingException("Can't add roles of user");
         }
     }
 }

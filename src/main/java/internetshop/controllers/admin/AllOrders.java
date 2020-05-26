@@ -15,7 +15,7 @@ import internetshop.service.OrderService;
 public class AllOrders extends HttpServlet {
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private OrderService orderService =
+    private final OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
 
     @Override

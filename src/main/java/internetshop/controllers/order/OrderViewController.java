@@ -22,7 +22,7 @@ public class OrderViewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long userId = (Long) req.getSession().getAttribute("user_id");
+        req.getSession().getAttribute("user_id");
         String orderId = req.getParameter("id");
         Long id = Long.valueOf(orderId);
         Order order = orderService.get(id);

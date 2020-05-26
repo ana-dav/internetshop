@@ -32,7 +32,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return product;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement", e);
+            throw new DataProcessingException("Can't create statement");
         }
     }
 
@@ -47,7 +47,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return Optional.of(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement", e);
+            throw new DataProcessingException("Can't create statement");
         }
         return Optional.empty();
     }
@@ -63,7 +63,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 all.add(getProductFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement", e);
+            throw new DataProcessingException("Can't create statement");
         }
         return all;
     }
@@ -78,7 +78,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             preparedStatement.setBigDecimal(3, element.getPrice());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement", e);
+            throw new DataProcessingException("Can't create statement");
         }
         return element;
     }
@@ -92,7 +92,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create statement", e);
+            throw new DataProcessingException("Can't create statement");
         }
     }
 

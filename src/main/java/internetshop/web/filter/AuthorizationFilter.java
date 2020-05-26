@@ -26,10 +26,10 @@ public class AuthorizationFilter implements Filter {
     private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
-    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
+    private final Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         protectedUrls.put("/users/all", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/admin", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/orders/all", Set.of(Role.RoleName.ADMIN));
