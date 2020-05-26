@@ -4,7 +4,7 @@ import internetshop.exceptions.AuthenticationException;
 import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.User;
-import internetshop.service.UserService;
+import internetshop.service.interfaces.UserService;
 import internetshop.util.HashUtil;
 
 @Service

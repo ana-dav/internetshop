@@ -1,7 +1,7 @@
 package internetshop.controllers.user;
 
 import internetshop.lib.Injector;
-import internetshop.service.UserService;
+import internetshop.service.interfaces.UserService;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -1,11 +1,11 @@
 package internetshop.service.impl;
 
-import internetshop.dao.OrderDao;
+import internetshop.dao.interfaces.OrderDao;
 import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.Order;
 import internetshop.model.Product;
-import internetshop.service.OrderService;
+import internetshop.service.interfaces.OrderService;
 import java.util.List;
 
 @Service

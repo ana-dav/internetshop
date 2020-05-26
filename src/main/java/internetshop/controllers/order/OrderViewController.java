@@ -3,7 +3,7 @@ package internetshop.controllers.order;
 import internetshop.lib.Injector;
 import internetshop.model.Order;
 import internetshop.model.Product;
-import internetshop.service.OrderService;
+import internetshop.service.interfaces.OrderService;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;

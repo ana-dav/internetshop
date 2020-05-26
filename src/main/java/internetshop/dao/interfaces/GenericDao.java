@@ -1,11 +1,12 @@
-package internetshop.service;
+package internetshop.dao.interfaces;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface GenericService<T, K> {
+public interface GenericDao<T, K> {
     T create(T element);
 
-    T get(K id);
+    Optional<T> get(K id);
 
     List<T> getAll();
 

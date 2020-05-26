@@ -2,7 +2,7 @@ package internetshop.controllers.admin;
 
 import internetshop.lib.Injector;
 import internetshop.model.Product;
-import internetshop.service.ProductService;
+import internetshop.service.interfaces.ProductService;
 import java.io.IOException;
 import java.math.BigDecimal;
 import javax.servlet.ServletException;

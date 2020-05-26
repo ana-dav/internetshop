@@ -1,6 +1,6 @@
 package internetshop.dao.jdbc;
 
-import internetshop.dao.UserDao;
+import internetshop.dao.interfaces.UserDao;
 import internetshop.exceptions.DataProcessingException;
 import internetshop.lib.Dao;
 import internetshop.model.Role;
@@ -95,21 +95,23 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public boolean delete(Long id) {
         String query = "DELETE FROM users WHERE user_id = ?";
-        //shopping_cart_user
-        //shopping_cart
-        //orders
-        //role +
-        //user +
         try (Connection connection = ConnectionUtil.getConnection()) {
+            deleteShoppingCartProducts(id);
+            deleteOrderProducts(id);
+            deleteOrders(id);
+            deleteShoppingCart(id);
             deleteUserRoles(id);
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.executeUpdate();
-            return true;
+            int numberOfRowsDeleted = statement.executeUpdate();
+            return numberOfRowsDeleted != 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can`t delete user");
         }
     }
+
+
 
     @Override
     public Optional<User> findByLogin(String login) {
@@ -157,17 +159,6 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private void deleteUserRoles(Long id) {
-        String query = "DELETE FROM users_roles WHERE user_id = ?";
-        try (Connection connection = ConnectionUtil.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete roles of user");
-        }
-    }
-
     private void addUserRoles(User user) {
         String query = "INSERT INTO users_roles (user_id, role_id) "
                 + "VALUES (?, (SELECT role_id from roles WHERE role_name = ?))";
@@ -186,6 +177,63 @@ public class UserDaoJdbcImpl implements UserDao {
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can't add roles of user");
+        }
+    }
+
+    private void deleteShoppingCartProducts(Long id) {
+        String query = "DELETE FROM shopping_cart_products WHERE cart_id IN"
+                + " (SELECT cart_id FROM shopping_carts WHERE user_id = ?)";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't shopping cart user");
+        }
+    }
+
+    private void deleteOrderProducts(Long id) {
+        String query = "DELETE FROM orders_products WHERE order_id IN"
+                + " (SELECT order_id FROM orders WHERE user_id = ?)";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Error in deleteOrdersProducts");
+        }
+    }
+
+    private void deleteOrders(Long id) {
+        String query = "DELETE FROM orders WHERE user_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't shopping cart user");
+        }
+    }
+
+    private void deleteShoppingCart(Long id) {
+        String query = "DELETE FROM shopping_carts WHERE user_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't shopping cart user");
+        }
+    }
+
+    private void deleteUserRoles(Long id) {
+        String query = "DELETE FROM users_roles WHERE user_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't delete roles of user");
         }
     }
 }

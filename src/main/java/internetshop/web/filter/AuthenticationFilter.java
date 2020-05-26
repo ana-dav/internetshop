@@ -1,7 +1,7 @@
 package internetshop.web.filter;
 
 import internetshop.lib.Injector;
-import internetshop.service.UserService;
+import internetshop.service.interfaces.UserService;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;

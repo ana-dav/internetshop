@@ -1,4 +1,4 @@
-package internetshop.service;
+package internetshop.service.interfaces;
 
 import internetshop.model.Product;
 import internetshop.model.ShoppingCart;
