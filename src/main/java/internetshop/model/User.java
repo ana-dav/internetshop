@@ -1,5 +1,7 @@
 package internetshop.model;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Set;
 
 public class User {
@@ -69,6 +71,26 @@ public class User {
 
     public void setSalt(byte[] salt) {
         this.salt = salt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Arrays.equals(salt, user.salt) &&
+                Objects.equals(roles, user.roles);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, name, login, password, roles);
+        result = 31 * result + Arrays.hashCode(salt);
+        return result;
     }
 
     @Override

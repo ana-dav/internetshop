@@ -96,12 +96,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "DELETE FROM orders WHERE order_id=?"
-                + "DELETE FROM orders_products WHERE order_id=?";
+        String query = "DELETE FROM orders WHERE order_id=?";
         try (Connection connection = ConnectionUtil.getConnection()) {
+            deleteOrderFromOrdersProducts(id);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, id);
-            preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -164,6 +163,15 @@ public class OrderDaoJdbcImpl implements OrderDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete products from orders_products");
+        }
+    }
+
+    private void deleteOrderFromOrdersProducts(Long orderId) throws SQLException {
+        String query = "DELETE FROM orders_products WHERE order_id=?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, orderId);
+            statement.executeUpdate();
         }
     }
 }
