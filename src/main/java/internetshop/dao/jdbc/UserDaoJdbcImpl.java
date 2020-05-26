@@ -95,6 +95,11 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public boolean delete(Long id) {
         String query = "DELETE FROM users WHERE user_id = ?";
+        //shopping_cart_user
+        //shopping_cart
+        //orders
+        //role +
+        //user +
         try (Connection connection = ConnectionUtil.getConnection()) {
             deleteUserRoles(id);
             PreparedStatement statement = connection.prepareStatement(query);
