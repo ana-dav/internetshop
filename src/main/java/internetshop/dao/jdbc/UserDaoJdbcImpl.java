@@ -111,8 +111,6 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-
-
     @Override
     public Optional<User> findByLogin(String login) {
         String query = "SELECT * FROM users WHERE login = ?";

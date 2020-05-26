@@ -1,6 +1,5 @@
 package internetshop.dao.interfaces;
 
-import internetshop.dao.interfaces.GenericDao;
 import internetshop.model.User;
 import java.util.Optional;
 
