@@ -60,11 +60,11 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public List<User> getAll() {
-        List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM users;";
+        String query = "SELECT * FROM users";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
+            List<User> users = new ArrayList<>();
             while (resultSet.next()) {
                 users.add(getUserFromResultSet(resultSet));
             }
@@ -136,24 +136,24 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     private Set<Role> getUserRoles(Long userId) {
-        Set<Role> roles = new HashSet<>();
         String query = "SELECT role_name FROM users_roles"
                 + " JOIN roles USING (role_id) WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
+            Set<Role> roles = new HashSet<>();
             while (resultSet.next()) {
                 roles.add(Role.of(resultSet.getString("role_name")));
             }
+            return roles;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get roles of user");
         }
-        return roles;
     }
 
     private void deleteUserRoles(Long id) {
-        String query = "DELETE FROM users_roles WHERE user_id = ?;";
+        String query = "DELETE FROM users_roles WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
@@ -165,7 +165,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     private void addUserRoles(User user) {
         String query = "INSERT INTO users_roles (user_id, role_id) "
-                + "VALUES (?, (SELECT role_id from roles WHERE role_name = ?));";
+                + "VALUES (?, (SELECT role_id from roles WHERE role_name = ?))";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
                     PreparedStatement.RETURN_GENERATED_KEYS);

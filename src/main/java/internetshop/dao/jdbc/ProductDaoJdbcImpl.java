@@ -54,18 +54,18 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        List<Product> all = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "SELECT * FROM products";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
+            List<Product> all = new ArrayList<>();
             while (resultSet.next()) {
                 all.add(getProductFromResultSet(resultSet));
             }
+            return all;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create statement");
         }
-        return all;
     }
 
     @Override
