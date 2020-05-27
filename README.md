@@ -95,6 +95,8 @@ Main page by default at URL: .../{context_path}/login
 Inject test data (admin, user, products):
 ![](images/inject.png)
 
+User login - userTest, password - 1234
+Admin login - adminTest, password - 1234
 Enjoy it!
 
 ### Author
