@@ -32,4 +32,4 @@
             </div>
         </div>
 </div>
-<!-- Material form subscription -->
+<jsp:include page="../parts/footer.jsp"></jsp:include>

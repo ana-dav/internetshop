@@ -1,14 +1,13 @@
-package internetshop.service;
+package internetshop.service.interfaces;
 
 import internetshop.model.Order;
 import internetshop.model.Product;
-import internetshop.model.User;
 import java.util.List;
 
 public interface OrderService {
     Order completeOrder(List<Product> products, Long user);
 
-    List<Order> getUserOrders(User user);
+    List<Order> getUserOrders(Long user);
 
     Order get(Long id);
 

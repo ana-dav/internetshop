@@ -61,6 +61,7 @@ CREATE TABLE `users` (
   `name` varchar(225) DEFAULT NULL,
   `login` varchar(225) NOT NULL,
   `password` varchar(225) NOT NULL,
+  `salt` VARBINARY(500) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
 )

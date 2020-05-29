@@ -1,9 +1,8 @@
 package internetshop.controllers.order;
 
 import internetshop.lib.Injector;
-import internetshop.service.OrderService;
+import internetshop.service.interfaces.OrderService;
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/order/delete")
 public class DeleteOrderController extends HttpServlet {
-
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
     private final OrderService orderService =
@@ -19,9 +17,10 @@ public class DeleteOrderController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        Long userId = (Long) req.getSession().getAttribute("user_id");
-        orderService.delete(userId);
-        resp.sendRedirect(req.getContextPath() + "/user/orders");
+            throws IOException {
+        String orderId = req.getParameter("id");
+        Long id = Long.valueOf(orderId);
+        orderService.delete(id);
+        resp.sendRedirect(req.getContextPath() + "/orders/admin");
     }
 }

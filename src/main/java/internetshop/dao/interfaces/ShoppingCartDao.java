@@ -1,4 +1,4 @@
-package internetshop.dao;
+package internetshop.dao.interfaces;
 
 import internetshop.model.ShoppingCart;
 

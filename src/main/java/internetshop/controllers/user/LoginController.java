@@ -14,9 +14,10 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
-    private final Injector injector = Injector.getInstance("internetshop");
+    private static final Injector INJECTOR =
+            Injector.getInstance("internetshop");
     private final AuthenticationService authenticationService =
-            (AuthenticationService) injector.getInstance(AuthenticationService.class);
+            (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -31,7 +32,6 @@ public class LoginController extends HttpServlet {
         String pass = req.getParameter("pass");
         try {
             User user = authenticationService.login(login, pass);
-            //session
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getId());
         } catch (AuthenticationException e) {

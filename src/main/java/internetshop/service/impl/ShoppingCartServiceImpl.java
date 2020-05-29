@@ -1,11 +1,11 @@
 package internetshop.service.impl;
 
-import internetshop.dao.ShoppingCartDao;
+import internetshop.dao.interfaces.ShoppingCartDao;
 import internetshop.lib.Inject;
 import internetshop.lib.Service;
 import internetshop.model.Product;
 import internetshop.model.ShoppingCart;
-import internetshop.service.ShoppingCartService;
+import internetshop.service.interfaces.ShoppingCartService;
 import java.util.List;
 
 @Service
@@ -44,7 +44,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCartDao.getAll().stream()
                 .filter(c -> c.getUserId().equals(userId))
                 .findFirst()
-                .get();
+                .orElse(null);
     }
 
     @Override

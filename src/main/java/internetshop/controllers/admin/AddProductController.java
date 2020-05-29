@@ -2,7 +2,7 @@ package internetshop.controllers.admin;
 
 import internetshop.lib.Injector;
 import internetshop.model.Product;
-import internetshop.service.ProductService;
+import internetshop.service.interfaces.ProductService;
 import java.io.IOException;
 import java.math.BigDecimal;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AddProductController extends HttpServlet {
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private ProductService productService =
+    private final ProductService productService =
             (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
@@ -30,7 +30,6 @@ public class AddProductController extends HttpServlet {
         String name = req.getParameter("name");
         String priceStr = req.getParameter("price");
         BigDecimal price = BigDecimal.valueOf(Long.parseLong(priceStr));
-
         productService.create(new Product(name, price));
         req.getRequestDispatcher("/WEB-INF/views/products/newprod.jsp").forward(req, resp);
     }

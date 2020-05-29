@@ -1,41 +1,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="parts/header.jsp"></jsp:include>
+<jsp:include page="../parts/header.jsp"></jsp:include>
 <div class="container">
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-6">
             <table class="table">
                 <thead class="orange white-text">
                 <tr>
-                    <th>Product ID</th>
+                    <th>User ID</th>
                     <th>Name</th>
-                    <th>Price</th>
+                    <th>Login</th>
                     <th>Delete</th>
                 </tr>
                 </thead>
-                <c:forEach var="product" items="${products}">
+                <c:forEach var="user" items="${users}">
                     <tr>
                         <td>
-                            <c:out value ="${product.getId()}"/>
+                            <c:out value ="${user.id}"/>
                         </td>
                         <td>
-                            <c:out value ="${product.name}"/>
+                            <c:out value ="${user.name}"/>
                         </td>
                         <td>
-                            <c:out value ="${product.price}"/>
+                            <c:out value ="${user.login}"/>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/cart/products/delete?id=${product.id}">
-                                <button class="btn" type="submit">Delete</button>
-                            </a>
+                            <a href="${pageContext.request.contextPath}/users/delete?id=${user.getId()}">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
+                </tbody>
             </table>
-            <a href="${pageContext.request.contextPath}/order/complete">
-                <button class="btn" type="submit">Complete Order</button>
-            </a>
-            </tbody>
         </div>
     </div>
 </div>

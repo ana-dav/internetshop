@@ -1,7 +1,7 @@
 package internetshop.web.filter;
 
 import internetshop.lib.Injector;
-import internetshop.service.UserService;
+import internetshop.service.interfaces.UserService;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,13 +18,12 @@ public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
     private static final Injector INJECTOR =
             Injector.getInstance("internetshop");
-    private UserService userService =
+    private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
-    private Set<String> publicUrls = new HashSet<>();
+    private final Set<String> publicUrls = new HashSet<>();
 
     @Override
-    public void init(FilterConfig filterConfig)
-            throws ServletException {
+    public void init(FilterConfig filterConfig) {
         publicUrls.add("/login");
         publicUrls.add("/registration");
         publicUrls.add("/logout");

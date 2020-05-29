@@ -3,7 +3,7 @@ package internetshop.web.filter;
 import internetshop.lib.Injector;
 import internetshop.model.Role;
 import internetshop.model.User;
-import internetshop.service.UserService;
+import internetshop.service.interfaces.UserService;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,18 +26,19 @@ public class AuthorizationFilter implements Filter {
     private final UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
-    private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
+    private final Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         protectedUrls.put("/users/all", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/admin", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/orders/all", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/order/complete", Set.of(Role.RoleName.USER));
         protectedUrls.put("/cart", Set.of(Role.RoleName.USER));
-        //protectedUrls.put("/user/orders", Set.of(Role.RoleName.USER));
-        protectedUrls.put("/order/details", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/user/orders", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/user/orders", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/order/delete", Set.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/orders/admin", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/delete", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/newprod", Set.of(Role.RoleName.ADMIN));
         protectedUrls.put("/users/delete", Set.of(Role.RoleName.ADMIN));
