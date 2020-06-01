@@ -1,6 +1,5 @@
 # mate.academy.internetshop
 ![](images/reg_img.png)
-<img src="images/reg_img.png" width="100">
 
 [Project purpose](#project-purpose)
 
@@ -96,7 +95,9 @@ Inject test data (admin, user, products):
 ![](images/inject.png)
 
 User login - userTest, password - 1234
+
 Admin login - adminTest, password - 1234
+
 Enjoy it!
 
 ### Author
