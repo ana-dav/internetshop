@@ -1,4 +1,4 @@
-# mate.academy.internetshop
+# com.internet.shop
 ![](images/reg_img.png)
 
 [Project purpose](#project-purpose)
